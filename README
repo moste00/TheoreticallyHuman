@@ -7,3 +7,40 @@ PORT OUT X_BAR
 	INST NAND1 NAND X X X_BAR	
 
 ENDDEF
+
+
+DEF TRUTH_TABLE2
+
+PORT IN A
+PORT IN B
+PORT IN C
+PORT OUT Z
+
+NET NOT_B
+NET NOT_A
+NET FIRST
+NET OR(NOT_A,NOT_B)
+NET SECOND
+
+	INST NOTA 		NOT 			    A		NOT_A	
+	INST NOTB 		NOT 		            B		NOT_B
+
+	INST OR_A_NOTB		OR	    A               NOT_B	first
+	INST OR_NOTA_NOTB	OR	    NOT_A           NOT_B	OR(NOT_A,NOT_B)
+	INST OR_FINAL		OR	    OR(NOT_A,NOT_B) C		second
+
+
+	INST ANDFINAL		AND	      first second 		Z
+ENDDEF
+
+
+
+
+
+
+
+
+
+
+
+
